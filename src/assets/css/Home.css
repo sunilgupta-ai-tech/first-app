@@ -1,0 +1,223 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
+  animation: rotateBg 20s linear infinite;
+}
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  animation: fadeDown 1.2s ease;
+}
+.hero p {
+  font-size: 1.2rem;
+  animation: fadeUp 1.5s ease;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sections */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Product Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+.card h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pricing */
+.pricing {
+  text-align: center;
+  margin: 60px 0;
+}
+.pricing h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+.plan {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px 25px;
+  width: 280px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.plan::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.15), rgba(0, 198, 255, 0.15));
+  transform: rotate(25deg);
+  animation: shine 6s linear infinite;
+}
+@keyframes shine {
+  from { transform: rotate(25deg) translateX(-100%); }
+  to { transform: rotate(25deg) translateX(100%); }
+}
+.plan:hover {
+  transform: scale(1.05);
+}
+.plan h3 {
+  margin-top: 0;
+  color: #007bff;
+  position: relative;
+}
+.plan p.price {
+  font-size: 1.6rem;
+  margin: 10px 0;
+  font-weight: bold;
+}
+.plan ul {
+  padding-left: 20px;
+  text-align: left;
+}
+.plan button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s;
+  position: relative;
+  z-index: 1;
+}
+.plan button:hover {
+  background: #0056b3;
+}
+
+/* Contact Form */
+form {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 1.2s ease;
+}
+form h2 {
+  text-align: center;
+  margin-top: 0;
+  color: #007bff;
+}
+form input,
+form textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.3s;
+}
+form input:focus,
+form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+form button {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+form button:hover {
+  background: #218838;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #222;
+  color: #fff;
+  margin-top: 60px;
+}
+.socials a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.socials a:hover {
+  color: #00c6ff;
+}
