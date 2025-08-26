@@ -1,36 +1,73 @@
 import React from "react";
-import "../assets/css/Home.css";
+import { Link } from "react-router-dom";
+import "../assets/css/Blog.css";
+import blogImage from "../assets/images/blog/blog.jpg";
 
 const Blog = () => {
-  const posts = [
-    { id: 1, title: "Improving Core Web Vitals in React", excerpt: "Tactics to hit green scores on LCP, CLS, and INP.", date: "2025-05-01" },
-    { id: 2, title: "Design Systems that Scale", excerpt: "How component libraries speed delivery and reduce bugs.", date: "2025-04-18" },
-    { id: 3, title: "SEO for SPAs: What Actually Matters", excerpt: "Technical SEO tips for modern JavaScript frameworks.", date: "2025-04-02" },
+  const blogs = [
+    { 
+      title: "Boost Your Business", 
+      desc: "Learn strategies to scale faster.", 
+      img: blogImage
+    },
+    { 
+      title: "Design Trends 2025", 
+      desc: "Modern UI/UX practices.", 
+      img: blogImage
+    },
+    { 
+      title: "AI in SaaS", 
+      desc: "How AI is changing software.", 
+      img: blogImage
+    },
+    { 
+      title: "Remote Work", 
+      desc: "Best tools for collaboration.", 
+      img: blogImage
+    },
+    { 
+      title: "Cybersecurity", 
+      desc: "Protecting your digital assets.", 
+      img: blogImage
+    },
+    { 
+      title: "Ecommerce Growth", 
+      desc: "Trends for online shopping.", 
+      img: blogImage
+    },
+    { 
+      title: "Startup Hacks", 
+      desc: "Lessons from successful founders.", 
+      img: blogImage
+    },
+    { 
+      title: "Web Performance", 
+      desc: "Why speed matters for SEO.", 
+      img: blogImage
+    },
   ];
+  
 
   return (
-    <>
-      <header className="hero">
-        <h1>Insights & guides</h1>
-        <p>Articles on performance, UX, and building better products.</p>
-      </header>
-
-      <section className="container">
-        <h2 className="section-title">Latest posts</h2>
-        <div className="grid">
-          {posts.map((p) => (
-            <div className="card" key={p.id}>
-              <h3>{p.title}</h3>
-              <p>{p.excerpt}</p>
-              <small>{new Date(p.date).toLocaleDateString()}</small>
+    <section className="blog container">
+      
+      <h2 className="section-title">Latest Blogs</h2>
+      <div className="blog-grid">
+        {blogs.map((blog, index) => (
+          <div className="blog-card" key={index}>
+            <img src={blog.img} alt={blog.title} />
+            <div className="blog-content">
+              <h3>{blog.title}</h3>
+              <p>{blog.desc}</p>
+              <Link to={`/blog/${index}`} className="read-more">
+              Read More →
+            </Link>
             </div>
-          ))}
-        </div>
-      </section>
-    </>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
 export default Blog;
-
-

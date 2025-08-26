@@ -1,191 +1,192 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import {
+  FaRocket, FaCode, FaPalette, FaChartLine, FaUsers, FaShieldAlt,
+  FaLaptopCode,
+  FaMobileAlt,
+  FaCloud,
+  FaDatabase,
+  FaProjectDiagram,
+  FaLock,
+} from "react-icons/fa";
 import "../assets/css/Home.css";
+
 const Home = () => {
-  const sliderRef = useRef(null);
-  useEffect(() => {
-    // Reveal cards on scroll
-    const cards = document.querySelectorAll(".card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    cards.forEach((card) => observer.observe(card));
-
-    // Auto slider
-    const container = sliderRef.current;
-    if (container) {
-      let idx = 0;
-      const slides = container.querySelectorAll('.slide');
-      const tick = () => {
-        idx = (idx + 1) % slides.length;
-        container.style.transform = `translateX(-${idx * 100}%)`;
-      };
-      const id = setInterval(tick, 3500);
-      return () => clearInterval(id);
-    }
-  }, []);
-
+  const OFFERINGS = [
+    { title: "Web Development", icon: <FaLaptopCode />, desc: "Modern, scalable, and responsive websites & apps." },
+    { title: "Mobile Apps", icon: <FaMobileAlt />, desc: "iOS & Android apps with seamless user experience." },
+    { title: "Cloud Solutions", icon: <FaCloud />, desc: "Secure cloud-native apps and infrastructure." },
+    { title: "Data & Analytics", icon: <FaDatabase />, desc: "Big data, AI, and business intelligence solutions." },
+    { title: "Product Engineering", icon: <FaProjectDiagram />, desc: "End-to-end product design, build, and scaling." },
+    { title: "Cybersecurity", icon: <FaLock />, desc: "Protect systems with best-in-class security practices." },
+  ];
+  const TESTIMONIALS = [
+    {
+      name: "Sarah Johnson",
+      role: "Product Manager, TechCorp",
+      feedback:
+        "The team delivered our project on time with amazing quality. Their communication and expertise were top-notch!",
+      img: "https://via.placeholder.com/80", // replace with client image
+    },
+    {
+      name: "David Miller",
+      role: "CEO, StartupHub",
+      feedback:
+        "They helped us scale our platform to thousands of users smoothly. Highly recommend for any fast-growing startup.",
+      img: "https://via.placeholder.com/80",
+    },
+    {
+      name: "Emily Chen",
+      role: "CTO, FinEdge",
+      feedback:
+        "From UI/UX to development, everything was seamless. We now have a product our users love.",
+      img: "https://via.placeholder.com/80",
+    },
+  ];
+  
   return (
-    <>
+    <div className="home">
       {/* Hero Section */}
-      <header className="hero">
-        <h1>Engineering digital transformation for modern enterprises</h1>
-        <p>
-          We deliver Digital, Cloud, and Enterprise technology solutions that scale securely and perform globally.
-        </p>
-      </header>
-
-      {/* Services Section (aligned to software company pillars) */}
-      <section className="container">
-        <h2 className="section-title">What we do</h2>
-        <div className="grid">
-          <div className="card stagger-1">
-            <h3>Digital Experiences</h3>
-            <p>Customer portals, headless CMS, and omnichannel CX with analytics.</p>
-          </div>
-          <div className="card stagger-2">
-            <h3>Enterprise Platforms</h3>
-            <p>CRM/ERP integrations, data pipelines, and secure API ecosystems.</p>
-          </div>
-          <div className="card stagger-3">
-            <h3>Cloud & DevOps</h3>
-            <p>Modernization, observability, IaC, and CI/CD across AWS/Azure/GCP.</p>
-          </div>
-          <div className="card stagger-4">
-            <h3>AI & Automation</h3>
-            <p>GenAI copilots, intelligent automation, and decision intelligence.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Work */}
-      <section className="container">
-        <h2 className="section-title">Featured work</h2>
-        <div className="grid">
-          <div className="card">
-            <h3>Fintech Landing</h3>
-            <p>+42% sign-ups after redesign and speed optimization.</p>
-          </div>
-          <div className="card">
-            <h3>D2C Store</h3>
-            <p>2.1s LCP and +28% checkout completion rate.</p>
-          </div>
-          <div className="card">
-            <h3>B2B SaaS</h3>
-            <p>+35% demo requests with improved IA and messaging.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Us */}
-      <section className="container">
-        <h2 className="section-title">Why choose us</h2>
-        <div className="grid">
-          <div className="card">
-            <h3>Performance-first builds</h3>
-            <p>Core Web Vitals optimized for faster loads, higher rankings, and better UX.</p>
-          </div>
-          <div className="card">
-            <h3>SEO from day one</h3>
-            <p>Clean HTML, schema, sitemaps and best practices built into your site.</p>
-          </div>
-          <div className="card">
-            <h3>Scalable architecture</h3>
-            <p>Modern stacks with maintainable code and room to grow as you do.</p>
-          </div>
-          <div className="card">
-            <h3>Transparent delivery</h3>
-            <p>Clear milestones, regular updates, and results you can measure.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Resources */}
-      <section className="container">
-        <h2 className="section-title">Resources</h2>
-        <div className="grid">
-          <div className="card"><h3>How to hit green CWV</h3><p>Guide to improving LCP, CLS, and INP in React.</p></div>
-          <div className="card"><h3>Scaling Design Systems</h3><p>Patterns for multi-product UI libraries.</p></div>
-          <div className="card"><h3>SEO for SPAs</h3><p>What actually matters for modern frameworks.</p></div>
-        </div>
-      </section>
-
-      {/* Tech */}
-      <section className="container">
-        <h2 className="section-title">Tech we love</h2>
-        <div className="badges">
-          <span>React</span>
-          <span>Next.js</span>
-          <span>Node.js</span>
-          <span>Express</span>
-          <span>MongoDB</span>
-          <span>PostgreSQL</span>
-          <span>Kafka</span>
-          <span>Stripe</span>
-          <span>Vercel</span>
-          <span>AWS</span>
-          <span>Azure</span>
-          <span>GCP</span>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="container">
-        <h2 className="section-title">Industries we serve</h2>
-        <div className="grid">
-          <div className="card"><h3>BFSI</h3><p>Onboarding, risk analytics, and regulatory-ready systems.</p></div>
-          <div className="card"><h3>Manufacturing</h3><p>Supplier portals, MES integrations, and product lifecycle data.</p></div>
-          <div className="card"><h3>Healthcare</h3><p>HIPAA-ready apps, intake automation, and secure data exchange.</p></div>
-          <div className="card"><h3>Energy</h3><p>Asset data platforms, IoT telemetry, and process automation.</p></div>
-        </div>
-      </section>
-
-      {/* Testimonials slider */}
-      <section className="container">
-        <h2 className="section-title">What clients say</h2>
-        <div className="slider-viewport">
-          <div className="slider-track" ref={sliderRef}>
-            <div className="slide">
-              <div className="card"><p>“They delivered a blazing‑fast site. Our sign‑ups jumped immediately.”</p><h4>— Sarah M., SaaS Founder</h4></div>
+      <section className="hero">
+        <div className="hero-container">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Transform Your Business with
+              <span className="gradient-text"> Digital Excellence</span>
+            </h1>
+            <p className="hero-description">
+              We design and build fast, SEO-friendly websites and applications that drive business growth. 
+              Our team of experts delivers cutting-edge digital solutions tailored to your needs.
+            </p>
+            <div className="hero-actions">
+              <a href="/contact" className="btn btn-primary">
+                Get Started
+              </a>
+              <a href="/portfolio" className="btn btn-secondary">
+                View Our Work
+              </a>
             </div>
-            <div className="slide">
-              <div className="card"><p>“Clean code, great communication, and on‑time delivery. Highly recommend.”</p><h4>— Daniel R., Product Lead</h4></div>
+          </div>
+          <div className="hero-visual">
+            <div className="hero-image">
+              <div className="floating-card card-1">
+                <FaCode />
+                <span>Web Development</span>
+              </div>
+              <div className="floating-card card-2">
+                <FaPalette />
+                <span>UI/UX Design</span>
+              </div>
+              <div className="floating-card card-3">
+                <FaChartLine />
+                <span>Analytics</span>
+              </div>
             </div>
-            <div className="slide">
-              <div className="card"><p>“Ecommerce conversion is up 28%. The speed and UX are outstanding.”</p><h4>— Priya S., D2C Owner</h4></div>
+          </div>
+        </div>
+      </section>
+{/* Offerings Section */}
+<section className="tech-section">
+      <h2 className="section-title">Our Technology Offerings</h2>
+
+      <div className="tech-grid">
+        {OFFERINGS.map((item) => (
+          <div className="tech-card" key={item.title}>
+            <div className="tech-icon">{item.icon}</div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="tech-cta">
+        <button>Get in Touch</button>
+      </div>
+    </section>
+
+      {/* Features Section */}
+      <section className="features">
+        <div className="container">
+          <div className="section-header">
+            <h2>Why Choose Bizstrap?</h2>
+            <p>We deliver exceptional results through our proven approach and expertise</p>
+          </div>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaRocket />
+              </div>
+              <h3>Fast Delivery</h3>
+              <p>Quick turnaround times without compromising quality. We deliver projects on time, every time.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaCode />
+              </div>
+              <h3>Modern Technology</h3>
+              <p>Built with the latest technologies and best practices for optimal performance and security.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaPalette />
+              </div>
+              <h3>Beautiful Design</h3>
+              <p>Stunning, user-friendly designs that engage your audience and drive conversions.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaChartLine />
+              </div>
+              <h3>SEO Optimized</h3>
+              <p>Search engine optimized to help your business rank higher and reach more customers.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaUsers />
+              </div>
+              <h3>24/7 Support</h3>
+              <p>Round-the-clock support to ensure your website runs smoothly at all times.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaShieldAlt />
+              </div>
+              <h3>Secure & Reliable</h3>
+              <p>Enterprise-grade security and reliability to protect your business and customers.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="container">
-        <h2 className="section-title">FAQ</h2>
-        <div className="faq">
-          <details>
-            <summary>How long does a project take?</summary>
-            <p>Most sites launch in 3–8 weeks depending on scope and complexity.</p>
-          </details>
-          <details>
-            <summary>Do you provide content and branding?</summary>
-            <p>We can collaborate with your team or bring trusted partners on board.</p>
-          </details>
-          <details>
-            <summary>Do you handle hosting and maintenance?</summary>
-            <p>Yes. We set up secure, scalable hosting and offer care plans post‑launch.</p>
-          </details>
+      {/* Testimonials Section */}
+
+      <section className="testimonial-section">
+      <h2 className="section-title">What Our Clients Say</h2>
+
+      <div className="testimonial-grid">
+        {TESTIMONIALS.map((t, index) => (
+          <div className="testimonial-card" key={index}>
+            <img src={t.img} alt={t.name} className="testimonial-img" />
+            <p className="testimonial-feedback">“{t.feedback}”</p>
+            <h4 className="testimonial-name">{t.name}</h4>
+            <span className="testimonial-role">{t.role}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+      {/* CTA Section */}
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Let's discuss how we can help you achieve your digital goals</p>
+            <a href="/contact" className="btn btn-primary btn-large">
+              Start Your Project
+            </a>
+          </div>
         </div>
       </section>
-
-      {/* Contact CTA removed from Home */}
-    </>
+    </div>
   );
 };
 

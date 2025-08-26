@@ -1,7 +1,14 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import "../assets/css/Home.css";
-import { FaCompass, FaPencilRuler, FaCode, FaShoppingCart, FaTachometerAlt, FaLifeRing } from "react-icons/fa";
+import "../assets/css/ServiceDetail.css";
+import { 
+  FaCompass, 
+  FaPencilRuler, 
+  FaCode, 
+  FaShoppingCart, 
+  FaTachometerAlt, 
+  FaLifeRing 
+} from "react-icons/fa";
 
 const SERVICES = {
   "discovery-strategy": {
@@ -38,8 +45,8 @@ const SERVICES = {
     icon: FaCode,
   },
   "ecommerce": {
-    title: "Ecommerce",
-    summary: "Conversion‑focused storefronts and seamless checkout flows.",
+    title: "Ecommerce Solutions",
+    summary: "Conversion-focused storefronts and seamless checkout flows.",
     bullets: [
       "Payments & subscriptions",
       "Cart & checkout",
@@ -72,7 +79,8 @@ const SERVICES = {
   },
 };
 
-const toSlug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const toSlug = (text) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -96,41 +104,69 @@ const ServiceDetail = () => {
     );
   }
 
+  const Icon = service.icon;
+
   return (
-    <>
-      <header className="hero">
-        <h1>{service.icon ? <service.icon /> : null} {service.title}</h1>
-        <p>{service.summary}</p>
+    <div className="service-detail-page">
+      {/* Hero Header */}
+      <header className="hero service-hero">
+        <h1 className="hero-title">
+          {Icon && <Icon className="hero-icon" />} {service.title}
+        </h1>
+        <p className="hero-subtitle">{service.summary}</p>
       </header>
 
+      {/* What You Get */}
       <section className="container">
-        <h2 className="section-title">What you get</h2>
+        <h2 className="section-title">What’s Included</h2>
         <div className="grid">
           {service.bullets.map((item) => (
             <div className="card" key={item}>
               <h3>{item}</h3>
               <p>
-                We implement {item.toLowerCase()} as part of a cohesive delivery
-                to ensure measurable outcomes.
+                Our team ensures <strong>{item.toLowerCase()}</strong> is executed with
+                precision, driving measurable business outcomes.
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="container">
-        <form>
-          <h2>Discuss {service.title}</h2>
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="What do you need help with?"></textarea>
-          <button type="submit">Get a Free Quote</button>
-        </form>
-      </section>
-    </>
+      {/* Contact Form */}
+      <section className="container form-section">
+  <form className="service-form">
+    <h2>Discuss {service.title}</h2>
+
+    <div className="form-row">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+    </div>
+
+    <div className="form-row">
+      <input type="tel" name="phone" placeholder="Mobile Number" required />
+      <select name="service" required>
+        <option value="">Select a Service</option>
+        <option value="discovery-strategy">Discovery & Strategy</option>
+        <option value="ui-ux-design">UI/UX Design</option>
+        <option value="web-development">Web Development</option>
+        <option value="ecommerce">Ecommerce</option>
+        <option value="performance-seo">Performance & SEO</option>
+        <option value="care-support">Care & Support</option>
+      </select>
+    </div>
+
+    <textarea
+      name="message"
+      rows="5"
+      placeholder="What do you need help with?"
+    ></textarea>
+
+    <button type="submit">🚀 Get a Free Quote</button>
+  </form>
+</section>
+
+    </div>
   );
 };
 
 export default ServiceDetail;
-
-
